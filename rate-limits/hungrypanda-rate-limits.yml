@@ -1,0 +1,30 @@
+generated: '2026-08-22'
+method: probed
+source: 'live unauthenticated responses from https://api-uk-f2e.hungrypanda.co and https://uk-gateway.hungrypanda.co'
+limit_count: 0
+note: 'HungryPanda documents no rate limits anywhere public, and none of the probed responses
+  carried a rate-limit signal. An honest zero: the runtime headers an agent would need are simply
+  not emitted on the anonymous surface, and the authenticated partner surface cannot be observed
+  without credentials.'
+response_headers:
+  observed: []
+  checked:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - RateLimit
+  - RateLimit-Policy
+  - Retry-After
+  note: 'Response headers on the API host are Cloudflare edge headers (cf-ray, cf-cache-status,
+    nel, report-to, __cf_bm) plus an upstream instance-name. No rate-limit family is present.'
+exhaustion_status_code: unknown
+evidence:
+- url: https://api-uk-f2e.hungrypanda.co/api/merchant/getCaptchagImage
+  status: 200
+  probed: '2026-08-22'
+  finding: 'No rate-limit headers; body {"code":40001}.'
+- url: https://uk-gateway.hungrypanda.co/
+  status: 200
+  probed: '2026-08-22'
+  finding: 'No rate-limit headers; body "Aws from Spring Boot!".'
+limits: []

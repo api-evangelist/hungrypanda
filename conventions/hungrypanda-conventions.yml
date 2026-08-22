@@ -1,0 +1,94 @@
+generated: '2026-08-22'
+method: probed
+source: 'live probes of https://api-uk-f2e.hungrypanda.co + https://uk-gateway.hungrypanda.co; first-party
+  merchant back-office bundle https://merchant.hungrypanda.co/bundle_8782eba0181f95878b4f.js; third-party
+  POS integrator documentation (Redcat, Deliverect)'
+note: 'HungryPanda publishes no API conventions document, no OpenAPI and no developer portal.
+  Everything below is either observed on the wire or read from the company''s own front-end
+  bundle. Fields that could not be established are recorded as unknown rather than guessed.'
+auth_style:
+  model: partner-issued App Key + Secret Key + ShopID
+  self_service: false
+  see: authentication/hungrypanda-authentication.yml
+base_urls:
+  style: regionally partitioned hosts, one per operating country
+  pattern: 'https://api-<region>-f2e.hungrypanda.co  (region ∈ uk, usa, eur, ca, aus, nzd, jp, kr, sg)'
+  gateway_pattern: 'https://<region>-gateway.hungrypanda.co'
+  source: 'API_PROXY / GATEWAY configuration map in the merchant back-office bundle'
+  note: 'A client must select the correct regional host; there is no single global base URL and no
+    host-level routing between regions.'
+path_conventions:
+  prefix: /api
+  observed_segments:
+  - /api/merchant/...
+  - /api/app/merchant/...
+  - /api/app/user/...
+  - /api/erp/shop/...
+  - /api/delivery/app/common/v4/...
+  note: 'Paths are grouped by consumer surface (merchant back office, consumer app, ERP, delivery)
+    rather than by resource. Observed in the merchant bundle only; the full path set is not public.'
+versioning:
+  style: in-path, partial
+  evidence: '/api/delivery/app/common/v4/verificationCode carries a v4 segment; the /api/merchant
+    and /api/erp surfaces carry no version segment at all.'
+  header_versioning: false
+  policy_published: false
+error_envelope:
+  shape: '{"code": <integer>}'
+  http_status_on_error: 200
+  rfc9457: false
+  see: errors/hungrypanda-problem-types.yml
+pagination:
+  style: unknown
+  note: No paginated response could be reached anonymously and no documentation exists.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_id_tracing:
+  provider_header: none observed
+  note: 'The only correlation identifiers on the response are Cloudflare''s cf-ray and the
+    upstream instance-name header (e.g. fr-uk-front-end-secure-api-2). Neither is a documented
+    request id an integrator can quote in a support ticket.'
+rate_limit_signaling:
+  headers_observed: []
+  note: 'No X-RateLimit-*, RateLimit-* or Retry-After header was returned on any probed response.
+    See rate-limits/hungrypanda-rate-limits.yml.'
+idempotency:
+  supported: unknown
+  header: none published
+  note: 'HungryPanda publishes no idempotency guidance. This matters more than usual here: the
+    integration''s core operation is order injection into a POS, where a retried write duplicates
+    a real food order. No Idempotency pointer is emitted, because none is published — recording
+    unknown is the honest result, not a zero to be filled in.'
+dry_run_mode:
+  supported: unknown
+  note: No sandbox or test mode is published; see the absence of a sandbox/ artifact.
+reversibility:
+  state: undocumented
+  grade: none
+  note: 'The API surface is a write surface — orders are injected into a merchant POS and order
+    status is pushed back — so reversibility is NOT `na` here. But HungryPanda publishes no
+    cancellation, refund or void reference, and no window, on any public host. Deliverect and
+    Redcat both describe two-way order-status updates back to HungryPanda, which implies a
+    status-transition path that can carry a cancellation, but neither third party names an
+    operation or a time limit and HungryPanda names nothing at all. NO WINDOW IS ASSERTED HERE:
+    stating one we cannot source would be the single most expensive error in this file.'
+  write_surfaces:
+  - surface: order injection (HungryPanda -> merchant POS)
+    reversal_operation: unknown
+    window: unpublished
+    source: 'https://www.deliverect.com/en-us/integrations/hungrypanda (two-way integration, orders to POS)'
+  - surface: order status update (merchant POS -> HungryPanda)
+    reversal_operation: unknown
+    window: unpublished
+    source: 'https://www.redcatht.com/helpcentre/hungry-panda-integration-overview'
+  - surface: menu synchronisation (merchant POS -> HungryPanda, location-scoped)
+    reversal_operation: unknown
+    window: unpublished
+    source: 'https://www.redcatht.com/helpcentre/hungry-panda-integration-overview'
+cross_links:
+  authentication: authentication/hungrypanda-authentication.yml
+  errors: errors/hungrypanda-problem-types.yml
+  lifecycle: lifecycle/hungrypanda-lifecycle.yml
+  rate_limits: rate-limits/hungrypanda-rate-limits.yml

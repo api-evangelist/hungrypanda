@@ -1,0 +1,42 @@
+generated: '2026-08-22'
+method: searched
+source: 'registry.npmjs.org, pypi.org, api.github.com — searched 2026-08-22'
+note: 'HungryPanda publishes no client SDK in any language and operates no public GitHub
+  organization. The single npm package below carries the company''s internal front-end naming
+  convention but is a build/deploy utility, not an API client, is published from a personal
+  address with no repository, and has not been released since 2023 — so it is NOT marked official
+  and NO SDKs pointer is emitted from this file.'
+registries_searched:
+- registry: npm
+  query: hungrypanda
+  results: 1
+- registry: pypi
+  query: hungrypanda
+  results: 0
+  note: https://pypi.org/pypi/hungrypanda/json returned 404.
+- registry: github
+  query: 'orgs hungrypanda / HungryPanda / hungrypanda-tech / hungry-panda'
+  results: 0
+  note: 'All four org lookups returned 404. The 31 repositories matching "hungrypanda" on GitHub
+    code search are unrelated third-party student and hobby projects.'
+packages:
+- name: hungrypanda-f2e-deploy-client
+  language: javascript
+  registry: npm
+  url: https://www.npmjs.com/package/hungrypanda-f2e-deploy-client
+  official: false
+  is_api_client: false
+  version: 2.0.8
+  published: '2023-04-25'
+  releases: 89
+  maintainer: medivh_tds (medivh_tds@163.com)
+  repository: null
+  homepage: null
+  description: f2e deploy client
+  note: 'Naming matches HungryPanda''s internal front-end convention (their merchant portal ships
+    as app-name "f2e-hungrypanda-shop"), which makes first-party authorship plausible, but the
+    package declares no repository, no homepage and no organisation scope, and is maintained from
+    a personal 163.com address — so it cannot be verified as first-party and is recorded
+    official: false. It is a deployment tool, not an API SDK; nothing in this repo derives from it.
+    Last release 2023-04-25, more than three years before this profile.'
+sdk_count: 0

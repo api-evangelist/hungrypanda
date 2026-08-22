@@ -1,0 +1,40 @@
+generated: '2026-08-22'
+method: probed
+source: 'live probes of HungryPanda hosts + first-party merchant back-office bundle'
+versioning:
+  policy_published: false
+  style: in-path on part of the surface only
+  evidence: '/api/delivery/app/common/v4/... is versioned; /api/merchant/... and /api/erp/... are not.'
+deprecation:
+  policy_published: false
+  sunset_header: not observed
+  deprecation_header: not observed
+  rfc8594: false
+  note: No deprecation or sunset policy is published on any HungryPanda host.
+status_page:
+  published: false
+  probes:
+  - url: https://status.hungrypanda.co
+    status: 000
+    note: Host does not resolve.
+  - url: https://hungrypanda.statuspage.io
+    status: 200
+    note: 'FALSE POSITIVE — redirects to atlassian.com/software/statuspage. A control probe of a
+      nonsense subdomain returns the same 200, so no HungryPanda status page exists.'
+sla:
+  published: false
+  note: 'The merchants page markets "24/7 assistance" but publishes no availability target,
+    credit regime or measurement window.'
+release_cadence:
+  evidence: 'The merchant back-office bundle carries build-date 2026-08-06 and the marketing site
+    build-date 2026-07-13, both stamped in the served HTML. That is deployment evidence, not a
+    published release cadence.'
+changelog:
+  published: false
+  note: 'www.hungrypanda.co/news-center/ is a corporate press feed, not an API changelog. No
+    ChangeLog pointer is emitted.'
+deprecated_operations: []
+gaps:
+- No status page, so an integrator cannot see an incident without opening a ticket.
+- No deprecation policy, so a partner has no contractual notice period for a breaking change.
+- Two of the three observed API surfaces carry no version segment at all.

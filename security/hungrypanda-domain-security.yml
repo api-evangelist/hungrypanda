@@ -1,0 +1,21 @@
+generated: '2026-08-22'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.hungrypanda.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 18 06:36:34 2026 GMT
+  hsts: false
+- host: api-uk-f2e.hungrypanda.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 24 18:35:38 2026 GMT
+  hsts: false
+domains:
+- domain: hungrypanda.co
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

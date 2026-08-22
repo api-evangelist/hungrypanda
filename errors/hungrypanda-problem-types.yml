@@ -1,0 +1,51 @@
+generated: '2026-08-22'
+method: probed
+source: live unauthenticated probes of https://api-uk-f2e.hungrypanda.co and https://uk-gateway.hungrypanda.co
+format: proprietary
+note: 'HungryPanda publishes no error reference and no OpenAPI, so nothing could be derived from a
+  specification. The entries below are the error envelopes actually observed on the wire during
+  the 2026-08-22 probe. This catalog is deliberately short: it records only what was seen, and the
+  authenticated surface is certain to return many more codes that cannot be enumerated without
+  partner credentials.'
+envelope:
+  api_host:
+    shape: '{"code": <integer>}'
+    example: '{"code":40001}'
+    content_type: application/json; charset=utf-8
+    http_status_on_error: 200
+    rfc9457: false
+    note: 'No message, detail, type, title, instance or request-id field is returned. The HTTP
+      status line is 200 even on rejection.'
+  gateway_host:
+    shape: '{"timestamp": <ISO8601>, "path": <string>, "status": <int>, "error": <string>}'
+    example: '{"timestamp":"2026-08-22T18:11:54.999+00:00","path":"/openapi.json","status":404,"error":"Not Found"}'
+    content_type: application/json
+    rfc9457: false
+    note: 'The regional *-gateway.hungrypanda.co hosts return the Spring Boot default error
+      attributes envelope, a framework default rather than a designed API contract.'
+problem_types:
+- code: 40001
+  observed_http_status: 200
+  host: api-uk-f2e.hungrypanda.co, api-usa-f2e.hungrypanda.co
+  meaning: 'Request rejected as unauthenticated / unsigned. Returned uniformly for every path
+    probed anonymously, including paths that do not exist.'
+  evidence:
+    url: https://api-uk-f2e.hungrypanda.co/api/merchant/getCaptchagImage
+    probed: '2026-08-22'
+  remediation: 'Supply the partner App Key / Secret Key / ShopID credentials issued by HungryPanda.'
+  confidence: high
+  note: 'Meaning inferred from the uniform response to unauthenticated traffic; HungryPanda
+    publishes no code registry to confirm the label.'
+- code: 204
+  observed_http_status: 200
+  host: api-uk-f2e.hungrypanda.co
+  meaning: 'Bare literal `204` returned as the JSON body for a request to the API host root.'
+  evidence:
+    url: https://api-uk-f2e.hungrypanda.co/
+    probed: '2026-08-22'
+  confidence: low
+  note: Recorded as observed; its semantics are not documented anywhere public.
+gaps:
+- 'No published error-code reference, so an integrator cannot map codes to remediation without partner onboarding.'
+- 'Errors are not RFC 9457 problem+json and carry no human-readable message.'
+- 'Errors are returned with HTTP 200, so generic HTTP clients and agents will treat failures as successes.'

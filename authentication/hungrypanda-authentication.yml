@@ -1,0 +1,52 @@
+generated: '2026-08-22'
+method: searched
+source: https://www.redcatht.com/helpcentre/hungry-panda-integration-overview
+note: 'HungryPanda publishes no developer portal and no authentication reference of its own. The
+  credential model below is stated by a first-party POS integrator''s public integration
+  documentation (Redcat) and corroborated by a live unauthenticated probe of the API host, which
+  rejects every request with a single envelope. No security scheme could be derived from a
+  specification because no specification is published.'
+apis:
+- name: HungryPanda Merchant & Partner API
+  baseURL: https://api-uk-f2e.hungrypanda.co
+  schemes:
+  - id: partner-app-key
+    type: apiKey
+    confidence: medium
+    credentials:
+    - name: App Key
+      role: partner/application identifier
+    - name: Secret Key
+      role: shared secret used to authenticate the request
+    - name: ShopID
+      role: external store identifier scoping the credential to one merchant location
+    issuance: 'Issued by HungryPanda to an approved merchant or POS partner. Redcat''s public
+      integration page states these three values "must be obtained from Hungry Panda".'
+    self_service: false
+    docs: https://www.redcatht.com/helpcentre/hungry-panda-integration-overview
+    note: 'The presence of a separate Secret Key alongside an App Key is the signature of a
+      request-signing scheme rather than a bearer key, but HungryPanda publishes no signing
+      algorithm, canonical-string format or header name, so the exact mechanism is NOT recorded
+      here. Do not assume HMAC.'
+  observed:
+    probe:
+      url: https://api-uk-f2e.hungrypanda.co/api/merchant/getCaptchagImage
+      method: GET
+      http_status: 200
+      body: '{"code":40001}'
+      probed: '2026-08-22'
+    behaviour: 'Every unauthenticated request — including /.well-known/*, /openapi.json and
+      /graphql — returns HTTP 200 with the same JSON body. The API signals authentication failure
+      in the payload, not the status line, which means a client cannot distinguish "not
+      authenticated" from "not found" without parsing the body.'
+    cors: 'Access-Control-Allow-Origin: * with Access-Control-Allow-Credentials: true observed on
+      the response.'
+    edge: Cloudflare (cf-ray, __cf_bm cookie set for domain hungrypanda.co)
+  oauth2: false
+  openid_connect: false
+  mutual_tls: unknown
+  scopes: 'Not applicable — no OAuth surface exists, so no scopes/ artifact is emitted.'
+gaps:
+- 'No public authentication documentation on any hungrypanda.co host.'
+- 'No /.well-known/openid-configuration or /.well-known/oauth-authorization-server (both 404 on www; SPA/gateway shells elsewhere).'
+- 'Authentication failure is returned as HTTP 200 with an in-body code, defeating standard HTTP client error handling.'

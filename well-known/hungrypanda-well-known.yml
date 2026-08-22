@@ -1,0 +1,161 @@
+generated: '2026-08-22'
+method: probed
+source: live probes of every HungryPanda web, merchant-portal and API host
+note: 'No /.well-known/ document is served anywhere on the HungryPanda estate. Two hosts answer
+  200 to every path and are recorded as misses, not hits: www.hungrypanda.co''s apex
+  (hungrypanda.co) and merchant.hungrypanda.co are single-page-app catch-alls that return the
+  same HTML shell for any path, and api-*-f2e.hungrypanda.co returns the signed-request rejection
+  envelope {"code":40001} with HTTP 200 for any unauthenticated path. NO WellKnown or SecurityTxt
+  pointer is emitted from this file — every probe below is an absence.'
+hosts:
+- host: www.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /v1/openapi.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /redoc
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 404
+  - path: /sitemap.xml
+    status: 404
+- host: merchant.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: SPA catch-all — returns the f2e-hungrypanda-shop HTML shell, not a document. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /.well-known/agent.json
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /openapi.json
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /swagger.json
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+  - path: /llms.txt
+    status: 200
+    note: SPA catch-all HTML shell. Miss.
+- host: api-uk-f2e.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 'Returns {"code":40001} (signed-request rejection), not a document. Miss.'
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /openapi.json
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /swagger.json
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /v2/api-docs
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /v3/api-docs
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /graphql
+    status: 200
+    note: 'Returns {"code":40001} — no GraphQL introspection possible anonymously.'
+  - path: /mcp
+    status: 200
+    note: 'Returns {"code":40001}. No MCP server.'
+- host: api-usa-f2e.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /openapi.json
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+  - path: /v3/api-docs
+    status: 200
+    note: 'Returns {"code":40001}. Miss.'
+- host: uk-gateway.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /v2/api-docs
+    status: 404
+  - path: /v3/api-docs
+    status: 404
+  - path: /graphql
+    status: 404
+  - path: /mcp
+    status: 404
+  - path: /sse
+    status: 404
+  - path: /?wsdl
+    status: 200
+    note: 'Spring Boot root responds "Aws from Spring Boot!" (text/plain) to any query string — not a WSDL. Miss.'
+- host: usa-gateway.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /v3/api-docs
+    status: 404
+- host: hpsrc.hungrypanda.co
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 'The Security Response Center itself serves no security.txt — see security/hungrypanda-vulnerability-disclosure.yml.'
+- host: static.hungrypanda.co
+  documents:
+  - path: /openapi.json
+    status: 404
+    note: S3-style bucket, NoSuchKey.
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: S3-style bucket, NoSuchKey.

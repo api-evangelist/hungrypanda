@@ -1,0 +1,24 @@
+generated: '2026-08-22'
+method: searched
+source: https://www.hungrypanda.co/merchants/
+plan_count: 0
+note: 'HungryPanda publishes no API plans, no developer pricing and no commission schedule. The
+  merchants page is a lead-capture form (country, city, address, merchant type, contact, merchant
+  name) followed by sales contact; access to the platform and its partner API is granted through
+  that form and through the POS middleware partners, never self-service. There is no tier table,
+  no quota, no overage and no published rate. This is a real zero, not a gap in the search.'
+evidence:
+- url: https://www.hungrypanda.co/merchants/
+  status: 200
+  finding: 'Merchant application form + partner logos (Neopos, Hubster, Menusifu, Easy Cloud, Deliverect). No pricing.'
+- url: https://www.hungrypanda.co/business/
+  status: 200
+  finding: Advertising/business cooperation page; no rate card.
+- url: https://merchant.hungrypanda.co/
+  status: 200
+  finding: Merchant back-office login only.
+contacts:
+  merchant_signup: https://www.hungrypanda.co/merchants/
+  business: business@hungrypanda.co
+  support: support@hungrypanda.co
+plans: []

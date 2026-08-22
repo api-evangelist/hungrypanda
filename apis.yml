@@ -1,23 +1,144 @@
 aid: hungrypanda
 name: HungryPanda
-description: 'HungryPanda is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'HungryPanda (熊猫外卖) is the largest Asian food delivery platform serving overseas
+  Chinese communities, founded in Nottingham, UK in 2017 and headquartered in London. It operates
+  a marketplace app, a rider delivery network, the Panda Fresh Asian grocery e-commerce platform
+  and the VouchersPanda lifestyle-deals platform across more than 80 cities in ten countries
+  (UK, France, Italy, USA, Canada, Australia, New Zealand, Japan, South Korea and Singapore).
+  Its API surface is a regionally partitioned merchant/partner ordering platform used by POS and
+  middleware integrators — Deliverect, Otter, Neopos, Hubster, Menusifu, Easy Cloud and Redcat —
+  to inject HungryPanda orders into a restaurant point of sale, push order-status updates back,
+  and sync menus. Integration credentials (App Key, Secret Key, ShopID) are issued by HungryPanda
+  on a partner basis; there is no public developer portal, no published specification and no
+  self-service sign-up.'
 url: https://raw.githubusercontent.com/api-evangelist/hungrypanda/refs/heads/main/apis.yml
+image: https://www.hungrypanda.co/assets/images/logo-400.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-22'
 modified: '2026-08-22'
 tags:
 - Company
-apis: []
+- Food Delivery
+- Delivery
+- Marketplace
+- Restaurants
+- Grocery
+- Logistics
+- E-Commerce
+- Merchants
+- Point of Sale
+apis:
+- aid: hungrypanda:merchant-api
+  name: HungryPanda Merchant & Partner API
+  description: 'The regionally partitioned HTTP API behind the HungryPanda merchant back office
+    (merchant.hungrypanda.co) and the POS/middleware partner integrations. It carries merchant
+    onboarding and authentication, shop/ERP administration, menu synchronisation, order injection
+    and order-status callbacks. Every request is authenticated; an unauthenticated call to any
+    path returns HTTP 200 with the JSON envelope {"code":40001}. No public specification, developer
+    portal or self-service sign-up exists — App Key, Secret Key and ShopID are issued by
+    HungryPanda to approved merchants and POS partners.'
+  humanURL: https://www.hungrypanda.co/merchants/
+  baseURL: https://api-uk-f2e.hungrypanda.co
+  tags:
+  - Food Delivery
+  - Orders
+  - Menus
+  - Merchants
+  - Point of Sale
+  properties:
+  - type: Authentication
+    url: authentication/hungrypanda-authentication.yml
+  - type: ErrorCatalog
+    url: errors/hungrypanda-problem-types.yml
+  - type: Conventions
+    url: conventions/hungrypanda-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/hungrypanda-lifecycle.yml
+  x-evidence:
+    discovery: 'Regional API hosts read verbatim from the first-party merchant back-office bundle
+      https://merchant.hungrypanda.co/bundle_8782eba0181f95878b4f.js (API_PROXY / GATEWAY config
+      map), then probed live.'
+    probed: '2026-08-22'
+    regional_bases:
+    - https://api-uk-f2e.hungrypanda.co
+    - https://api-usa-f2e.hungrypanda.co
+    - https://api-eur-f2e.hungrypanda.co
+    - https://api-ca-f2e.hungrypanda.co
+    - https://api-aus-f2e.hungrypanda.co
+    - https://api-nzd-f2e.hungrypanda.co
+    - https://api-jp-f2e.hungrypanda.co
+    - https://api-kr-f2e.hungrypanda.co
+    - https://api-sg-f2e.hungrypanda.co
+    gateway_hosts:
+    - https://uk-gateway.hungrypanda.co
+    - https://usa-gateway.hungrypanda.co
+    - https://fr-gateway.hungrypanda.co
+    - https://ca-gateway.hungrypanda.co
+    - https://aus-gateway.hungrypanda.co
+    - https://nzd-gateway.hungrypanda.co
+    - https://jp-gateway.hungrypanda.co
+    - https://kr-gateway.hungrypanda.co
+    - https://sg-gateway.hungrypanda.co
+    contract: 'No OpenAPI, Swagger, GraphQL, AsyncAPI, gRPC or WSDL contract is published on any
+      HungryPanda host. STEP 0b discovery misses recorded in well-known/hungrypanda-well-known.yml.'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/hungrypanda-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/hungrypanda_stock/
+  url: https://www.hungrypanda.co/
+- type: SignUp
+  url: https://www.hungrypanda.co/merchants/
+- type: Support
+  url: https://www.hungrypanda.co/contact/
+- type: PrivacyPolicy
+  url: https://www.hungrypanda.co/privacy-policy/
+- type: TermsOfService
+  url: https://fast-leaflet-uk.hungrypanda.co/articleRule?appTypeId=1
+- type: Blog
+  url: https://www.hungrypanda.co/news-center/
+- type: Security
+  url: https://hpsrc.hungrypanda.co/
+- type: VulnerabilityDisclosure
+  url: security/hungrypanda-vulnerability-disclosure.yml
+- type: Packages
+  url: packages/hungrypanda-packages.yml
+- type: LLMsTxt
+  url: llms/hungrypanda-llms.txt
+- type: Plans
+  url: plans/hungrypanda-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hungrypanda-rate-limits.yml
+x-enrichment:
+  date: '2026-08-22'
+  status: minimal
+  artifacts_added: 11
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: sales-gate
+  detail: >-
+    HungryPanda runs a real regionally partitioned merchant/partner ordering API — its own
+    merchant back-office bundle names api-{uk,usa,eur,ca,aus,nzd,jp,kr,sg}-f2e.hungrypanda.co and
+    matching regional gateways — but the only route to it is the merchant application form at
+    hungrypanda.co/merchants/, and every anonymous call to the live API host answers HTTP 200 with
+    {"code":40001} while no host on the estate serves an OpenAPI, GraphQL SDL, WSDL, .proto or any
+    /.well-known/ document.
+  evidence:
+    - url: https://api-uk-f2e.hungrypanda.co/api/merchant/getCaptchagImage
+      status: 200
+    - url: https://api-uk-f2e.hungrypanda.co/openapi.json
+      status: 200
+    - url: https://uk-gateway.hungrypanda.co/v3/api-docs
+      status: 404
+    - url: https://www.hungrypanda.co/openapi.json
+      status: 404
+    - url: https://www.hungrypanda.co/merchants/
+      status: 200
+  checked: '2026-08-22'
