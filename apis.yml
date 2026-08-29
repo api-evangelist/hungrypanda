@@ -12,6 +12,17 @@ description: 'HungryPanda (熊猫外卖) is the largest Asian food delivery plat
   on a partner basis; there is no public developer portal, no published specification and no
   self-service sign-up.'
 url: https://raw.githubusercontent.com/api-evangelist/hungrypanda/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.hungrypanda.co/assets/images/logo-400.png
 x-type: company
 x-source: harvest:secondary-market
