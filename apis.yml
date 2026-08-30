@@ -34,6 +34,17 @@ tags:
 - Food Delivery
 - Delivery
 - Marketplace
+- Restaurant
+- Grocery
+- Logistics
+- E-Commerce
+- Merchants
+- Point-of-Sale
+tags_raw:
+- Company
+- Food Delivery
+- Delivery
+- Marketplace
 - Restaurants
 - Grocery
 - Logistics
@@ -53,6 +64,12 @@ apis:
   humanURL: https://www.hungrypanda.co/merchants/
   baseURL: https://api-uk-f2e.hungrypanda.co
   tags:
+  - Food Delivery
+  - Order
+  - Menus
+  - Merchants
+  - Point-of-Sale
+  tags_raw:
   - Food Delivery
   - Orders
   - Menus
