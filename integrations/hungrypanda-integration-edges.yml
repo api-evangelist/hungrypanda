@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/hungrypanda/integrations
+- https://n8n.io/integrations/hungrypanda/
+- https://composio.dev/toolkits/hungrypanda
+- https://monid.ai/tools/hungrypanda
+checked:
+- https://composio.dev/toolkits/hungrypanda
+- https://monid.ai/tools/hungrypanda
+- https://n8n.io/integrations/hungrypanda/
+- https://zapier.com/apps/hungrypanda/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
