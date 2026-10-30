@@ -64,5 +64,103 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-HungryPanda is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/hungrypanda_stock/
+HungryPanda (熊猫外卖) is the largest Asian food delivery platform serving overseas Chinese communities, founded in Nottingham, UK in 2017 and headquartered in London. It operates a marketplace app, a rider delivery network, the Panda Fresh Asian grocery e-commerce platform and the VouchersPanda lifestyle-deals platform across more than 80 cities in ten countries (UK, France, Italy, USA, Canada, Australia, New Zealand, Japan, South Korea and Singapore). Its API surface is a regionally partitioned merchant/partner ordering platform used by POS and middleware integrators — Deliverect, Otter, Neopos, Hubster, Menusifu, Easy Cloud and Redcat — to inject HungryPanda orders into a restaurant point of sale, push order-status updates back, and sync menus. Integration credentials (App Key, Secret Key, ShopID) are issued by HungryPanda on a partner basis; there is no public developer portal, no published specification and no self-service sign-up.
+
+**Areas:** Company · Food Delivery · Delivery · Marketplace · Restaurant · Grocery · Logistics · E-Commerce · Merchants · Point-of-Sale
+
+## HungryPanda on APIs.io
+
+Everything profiled for HungryPanda is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hungrypanda/](https://apis.io/providers/hungrypanda/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [HungryPanda Merchant & Partner API](https://apis.io/apis/hungrypanda/merchant-api/) — The regionally partitioned HTTP API behind the HungryPanda merchant back office (merchant.hungrypanda.co) and the POS/middleware partner integrations. It…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hungrypanda Authentication](https://apis.io/security/hungrypanda/hungrypanda-authentication/)
+- [Hungrypanda Domain Security](https://apis.io/security/hungrypanda/hungrypanda-domain-security/)
+- [Hungrypanda Vulnerability Disclosure](https://apis.io/security/hungrypanda/hungrypanda-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hungrypanda Plans Pricing](https://apis.io/plans/hungrypanda/hungrypanda-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hungrypanda Rate Limits](https://apis.io/rate-limits/hungrypanda/hungrypanda-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.hungrypanda.co/)
+- [Sign up](https://www.hungrypanda.co/merchants/)
+- [Support](https://www.hungrypanda.co/contact/)
+- [Blog](https://www.hungrypanda.co/news-center/)
+- [Security](https://hpsrc.hungrypanda.co/)
+- [Terms of service](https://fast-leaflet-uk.hungrypanda.co/articleRule?appTypeId=1)
+- [Privacy policy](https://www.hungrypanda.co/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 15.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 23.7 |
+
+**Agent readiness 7.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.6** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hungrypanda/](https://apis.io/providers/hungrypanda/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for HungryPanda: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hungrypanda/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
